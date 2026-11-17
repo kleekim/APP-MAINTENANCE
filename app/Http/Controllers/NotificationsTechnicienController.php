@@ -1,0 +1,31 @@
+<?php
+
+namespace App\Http\Controllers;
+
+use Illuminate\Support\Facades\Auth;
+
+class NotificationsTechnicienController extends Controller
+{
+    public function notification()
+    {
+        /** @var \App\Models\User $user */
+        $user = Auth::user();
+
+        $notifications = $user->notifications()->latest()->paginate(10);
+
+        $user->unreadNotifications->markAsRead();
+
+        return view('technicien.notifications_techniciens', compact('notifications'));
+    }
+
+    public function destroy($id)
+    {
+        /** @var \App\Models\User $user */
+        $user = Auth::user();
+
+        $notification = $user->notifications()->findOrFail($id);
+        $notification->delete();
+
+        return back()->with('success', 'Notification supprimée avec succès.');
+    }
+}

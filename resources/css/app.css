@@ -1,0 +1,20 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+[x-cloak] {
+    display: none;
+}
+
+.admin-focus input:focus,
+.admin-focus select:focus,
+.admin-focus textarea:focus,
+.admin-focus input:focus-visible,
+.admin-focus select:focus-visible,
+.admin-focus textarea:focus-visible {
+    outline: none !important;
+    border-color: #006937 !important;
+    box-shadow: 0 0 0 2px rgba(0, 105, 55, 0.25) !important;
+}
+
+
